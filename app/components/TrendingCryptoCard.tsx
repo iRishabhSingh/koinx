@@ -3,27 +3,38 @@ import Image from "next/image";
 import Chip from "./Chip";
 
 export interface TrendingCryptoCardProps {
-  small: string;
-  symbol: string;
-  data: {
-    price: string;
+  key: number;
+  item: {
+    coin_id: number;
+    id: string;
+    small: string;
+    name: string;
+    symbol: string;
+    data: {
+      price: string;
+      sparkline: string;
+    };
   };
-  sparkline: string;
 }
 
 const TrendingCryptoCard: React.FC<TrendingCryptoCardProps> = ({
-  small,
-  symbol,
-  data: { price },
-  sparkline,
+  key,
+  item: {
+    small,
+    symbol,
+    data: { price, sparkline },
+  },
 }) => {
   return (
-    <div className="inline-flex flex-col p-4 border border-gray-300 bg-white rounded-lg my-1 min-w-[250px]">
+    <div
+      key={key}
+      className="inline-flex flex-col p-4 border border-gray-300 bg-white rounded-lg my-1 min-w-[250px] h-fit"
+    >
       {/* Logo and Name */}
       <div className="flex items-center mb-2 gap-2">
         <Image
           src={small}
-          alt="Crypto Logo"
+          alt={`${symbol}'s Logo`}
           className="w-8 h-8 md:w-6 md:h-6 rounded-full"
           width={150}
           height={150}
@@ -32,17 +43,17 @@ const TrendingCryptoCard: React.FC<TrendingCryptoCardProps> = ({
         <Chip text={2} />
       </div>
       {/* Current Value */}
-      <p className="text-lg md:text-sm font-semibold">{price}</p>
+      <p className="text-lg md:text-sm font-medium overflow-x-scroll whitespace-nowrap carousel">
+        {price}
+      </p>
       {/* Graph */}
-      <div className="w-[auto]">
-        <Image
-          src={sparkline}
-          alt="Crypto Graph"
-          className="w-full mt-2"
-          width={200}
-          height={100}
-        />
-      </div>
+      <Image
+        src={sparkline}
+        alt={`${symbol}'s Graph`}
+        className="w-[215px] h-[63.92px] mt-2 px-8 py-1"
+        width={100}
+        height={100}
+      />
     </div>
   );
 };

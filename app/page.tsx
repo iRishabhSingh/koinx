@@ -1,12 +1,18 @@
 import { Breadcrumb } from "./components";
 import { TrendingCryptoCardProps } from "./components/TrendingCryptoCard";
+import { TrendingSectionDiv } from "./containers";
+
+export interface CryptoPriceProps {
+  usd: number;
+  usd_24h_change: number;
+  inr: number;
+}
 
 export default async function Home() {
-  const data = await fetch("https://api.coingecko.com/api/v3/search/trending");
+  let data = await fetch("https://api.coingecko.com/api/v3/search/trending");
   const trendingCryptoDataFetched = await data.json();
   const trendingCryptoData: TrendingCryptoCardProps[] =
     trendingCryptoDataFetched.coins;
-  console.log(trendingCryptoData);
 
   return (
     <main className="bg-[#EDF0F3] min-w-[320px]">
@@ -23,8 +29,8 @@ export default async function Home() {
         <div className="order-3 sm:order-2 sm:mr-[24px] sm:ml-0 md:mr-[56px] md:ml-0 rounded-md w-full sm:w-auto">
           SideBar
         </div>
-        <div className="order-2 sm:order-3 sm:p-2 sm:px-[24px] md:py-[24px] md:px-[56px] mx-4 sm:mx-0 bg-white rounded-md sm:rounded-[0] w-full">
-          CardsSection
+        <div className="order-2 sm:order-3 p-0 sm:p-2 sm:px-[24px] md:py-[24px] md:px-[56px] mx-4 sm:mx-0 bg-white rounded-md sm:rounded-[0] max-w-[calc(100%-2rem)] sm:max-w-full">
+          <TrendingSectionDiv trendingCryptoData={trendingCryptoData} />
         </div>
       </div>
     </main>

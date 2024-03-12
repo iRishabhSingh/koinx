@@ -59,7 +59,7 @@ const Carousel: React.FC<CarouselProps> = ({
     <div className="relative overflow-hidden py-4">
       <div
         ref={scrollContainerRef}
-        className="flex space-x-4 overflow-x-auto carousel"
+        className="flex overflow-x-auto carousel gap-4"
       >
         {children}
       </div>
@@ -68,7 +68,7 @@ const Carousel: React.FC<CarouselProps> = ({
         <button
           title="Scroll left"
           onClick={scrollLeft}
-          className="absolute left-2 top-1/2 transform -translate-y-1/2 bg-white p-1 rounded-full text-gray-600"
+          className="absolute left-0 top-1/2 transform -translate-y-1/2 bg-white p-1 rounded-full text-gray-600 border border-[#D3E0E6]"
         >
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -91,7 +91,7 @@ const Carousel: React.FC<CarouselProps> = ({
         <button
           title="Scroll right"
           onClick={scrollRight}
-          className="absolute right-2 top-1/2 transform -translate-y-1/2 bg-white p-1 rounded-full text-gray-600"
+          className="absolute right-0 top-1/2 transform -translate-y-1/2 bg-white p-1 rounded-full text-gray-600 border border-[#D3E0E6]"
         >
           <svg
             xmlns="http://www.w3.org/2000/svg"
