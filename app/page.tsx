@@ -1,6 +1,8 @@
 import { Breadcrumb } from "./components";
+import { TeamMemberCardProps } from "./components/TeamMemberCard";
 import { TrendingCryptoCardProps } from "./components/TrendingCryptoCard";
-import { SideCard, TrendingSectionDiv } from "./containers";
+import { SideCard, Team, TrendingSectionDiv } from "./containers";
+import team from "./teams";
 
 export interface CryptoPriceProps {
   usd: number;
@@ -13,6 +15,7 @@ export default async function Home() {
   const trendingCryptoDataFetched = await data.json();
   const trendingCryptoData: TrendingCryptoCardProps[] =
     trendingCryptoDataFetched.coins;
+  const members: TeamMemberCardProps[] = team.members;
 
   return (
     <main className="bg-[#EDF0F3] min-w-[320px]">
@@ -24,7 +27,7 @@ export default async function Home() {
       />
       <div className="flex gap-4 flex-wrap">
         <div className="order-1 mx-4 sm:ml-[24px] sm:mr-0 md:ml-[56px] md:mr-0 rounded-md md:max-w-[60%] flex flex-col gap-4">
-          CryptoBar
+          <Team members={members} />
         </div>
         <div className="order-3 sm:order-2 sm:mr-[24px] sm:ml-0 md:mr-[56px] md:ml-0 rounded-md w-full sm:w-auto">
           <SideCard sideCardData={trendingCryptoData.slice(0, 3)} />
