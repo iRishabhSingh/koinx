@@ -1,6 +1,13 @@
 import { Breadcrumb } from "./components";
+import { TrendingCryptoCardProps } from "./components/TrendingCryptoCard";
 
-export default function Home() {
+export default async function Home() {
+  const data = await fetch("https://api.coingecko.com/api/v3/search/trending");
+  const trendingCryptoDataFetched = await data.json();
+  const trendingCryptoData: TrendingCryptoCardProps[] =
+    trendingCryptoDataFetched.coins;
+  console.log(trendingCryptoData);
+
   return (
     <main className="bg-[#EDF0F3] min-w-[320px]">
       <Breadcrumb
