@@ -5,8 +5,8 @@ import { MobileMenu } from "./components";
 
 const Navbar = () => {
   return (
-    <nav className="bg-white py-4 px-4 sm:px-[24px] md:px-[56px] min-w-[320px]">
-      <div className="mx-auto flex justify-between items-center">
+    <nav className="bg-white w-full">
+      <div className="mx-auto flex justify-between items-center  py-4 px-4 sm:px-[24px] md:px-[56px] min-w-[320px] max-w-[1440px]">
         <div className="flex items-center">
           {/* Logo */}
           <Link href="/" passHref className="text-black text-lg font-semibold">
@@ -16,6 +16,7 @@ const Navbar = () => {
               width={95}
               height={20}
               loading="lazy"
+              style={{ width: "100%", height: "100%" }}
             />
           </Link>
         </div>

@@ -13,9 +13,9 @@ interface BreadcrumbProps {
 
 const Breadcrumb: React.FC<BreadcrumbProps> = ({ items }) => {
   return (
-    <div className="flex items-center py-2 space-x-2 text-gray-500 px-4 sm:px-[24px] md:px-[56px]">
+    <div className="flex items-center py-2 space-x-2 text-gray-500 px-4 sm:px-[24px] md:px-[56px] xl:m-auto max-w-[1440px]">
       {items.map((item, index) => (
-        <React.Fragment key={index}>
+        <React.Fragment key={item.label}>
           <Link
             href={item.href}
             className={`hover:text-black ${item.current ? "text-black" : ""}`}

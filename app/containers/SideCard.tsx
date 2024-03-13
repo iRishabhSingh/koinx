@@ -10,7 +10,7 @@ const SideCard: React.FC<SideCardProps> = ({ sideCardData }) => {
     <div className="flex flex-col gap-y-4 items-center">
       <GetStartedCard />
       <div className="flex flex-col gap-2 w-full md:max-w-[426px] bg-white rounded-md p-3 md:p-6">
-        <h2 className="text-lg sm:text-xl md:text-2xl font-medium leading-10">
+        <h2 className="text-lg sm:text-lg md:text-2xl font-medium leading-10">
           Trending Coins (24h)
         </h2>
         <div>

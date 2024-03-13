@@ -16,7 +16,7 @@ const TrendingCoin: React.FC<TrendingCryptoCardProps> = ({
           height={26}
           className="rounded-full"
         />
-        <p className="text-base md:text-md font-sm">
+        <p className="text-sm lg:text-base">
           {name} ({symbol})
         </p>
       </div>
