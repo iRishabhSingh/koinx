@@ -22,8 +22,7 @@ const TeamPlayerCard: React.FC<TeamMemberCardProps> = ({
           alt={`${name}'s Profile Image`}
           width={100}
           height={100}
-          className="mb-2 rounded-md"
-          style={{ width: "100%", height: "100%" }}
+          className="mb-2 mx-auto rounded-md max-w-[90px]"
         />
         <div>
           <h3>{name}</h3>

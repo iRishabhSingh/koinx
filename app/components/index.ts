@@ -1,5 +1,6 @@
 export { default as Breadcrumb } from "./Breadcrumb";
 export { default as Button } from "./Button";
+export { default as CalculateAboutCryptoCard } from "./CalculateAboutCryptoCard";
 export { default as Carousel } from "./Carousel";
 export { default as Chip } from "./Chip";
 export { default as GetStartedCard } from "./GetStartedCard";

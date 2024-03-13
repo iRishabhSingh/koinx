@@ -9,10 +9,10 @@ interface NextButtonProps {
 const Button: React.FC<NextButtonProps> = ({ text, arrow, onClick }) => {
   return (
     <button
-      className="w-fit flex items-center bg-white font-medium py-2 px-5 rounded-lg shadow-md m-1 ml-0"
+      className="w-fit flex items-center bg-white font-medium py-2 px-2 sm:px-5 rounded-lg shadow-md m-1 ml-0"
       onClick={onClick}
     >
-      <span className="text-nowrap text-sm lg:text-base sm:text-[calc(100%-23.5%)]">
+      <span className="text-nowrap text-xs sm:text-sm lg:text-base sm:text-[calc(100%-23.5%)]">
         {text}
       </span>
       {arrow && (
