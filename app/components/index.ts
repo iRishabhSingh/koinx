@@ -7,6 +7,7 @@ export { default as GetStartedCard } from "./GetStartedCard";
 export { default as HoverForInfo } from "./HoverForInfo";
 export { default as MobileMenu } from "./MobileMenu";
 export { default as SentimentEventCard } from "./SentimentEventCard";
+export { default as Tabs } from "./Tabs";
 export { default as TeamMemberCard } from "./TeamMemberCard";
 export { default as TrendingCoin } from "./TrendingCoin";
 export { default as TrendingCryptoCard } from "./TrendingCryptoCard";

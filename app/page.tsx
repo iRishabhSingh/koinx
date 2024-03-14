@@ -3,6 +3,7 @@ import { TeamMemberCardProps } from "./components/TeamMemberCard";
 import { TrendingCryptoCardProps } from "./components/TrendingCryptoCard";
 import {
   AboutCryptoDiv,
+  PerformanceDiv,
   SentimentDiv,
   SideCard,
   Team,
@@ -34,6 +35,7 @@ export default async function Home() {
       />
       <div className="flex gap-4 flex-wrap justify-between xl:m-auto max-w-[1440px]">
         <div className="order-1 mx-4 sm:ml-[24px] sm:mr-0 md:ml-[56px] md:mr-0 rounded-md max-w-[calc(100%-2rem)] sm:max-w-[calc(60%-32px)] md:max-w-[calc(60%-60px)] lg:max-w-[calc(60%-68px)] xl:max-w-[60%] flex flex-col gap-4">
+          <PerformanceDiv id={"bitcoin"} />
           <SentimentDiv />
           <AboutCryptoDiv />
           <Tokenomics />

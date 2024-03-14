@@ -8,7 +8,7 @@ const Sentiment = () => {
       </h2>
       <div>
         <div className="flex items-center">
-          <h3 className="font-semibold pb-2 text-[#44475B]">Key Events</h3>
+          <h3 className="font-semibold text-[#44475B]">Key Events</h3>
           <HoverForInfo about="Key Events" />
         </div>
         <Carousel>
@@ -18,9 +18,7 @@ const Sentiment = () => {
       </div>
       <div>
         <div className="flex items-center">
-          <h3 className="font-semibold pb-2 text-[#44475B]">
-            Analyst Estimates
-          </h3>
+          <h3 className="font-semibold text-[#44475B]">Analyst Estimates</h3>
           <HoverForInfo about="Analyst Estimates" />
         </div>
         <div className="flex gap-4 items-center py-4">

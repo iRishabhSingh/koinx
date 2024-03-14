@@ -13,7 +13,7 @@ const HoverForInfo: React.FC<{ children?: React.ReactNode; about: string }> = ({
   };
 
   return (
-    <div className="relative">
+    <div className="relative flex justify-center items-center">
       <button className="">
         <FaInfoCircle
           className="ml-2 text-[#ABB9BF] cursor-pointer"
@@ -22,7 +22,7 @@ const HoverForInfo: React.FC<{ children?: React.ReactNode; about: string }> = ({
           onClick={toggleTooltip}
         />
         {showTooltip && (
-          <div className="absolute bg-gray-100 text-gray-800 px-2 py-1 rounded-md border border-gray-200">
+          <div className="absolute top-5 left-[-100%] bg-gray-100 text-gray-800 px-2 py-1 rounded-md border border-gray-200 z-50">
             {children ? children : about}
           </div>
         )}
