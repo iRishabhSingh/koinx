@@ -1,4 +1,4 @@
-import { CalculateAboutCryptoCard } from "../components";
+import { CalculateAboutCryptoCard, Carousel } from "../components";
 
 const AboutCryptoDiv = () => {
   return (
@@ -37,16 +37,18 @@ const AboutCryptoDiv = () => {
       <div className="border-b-[1px] border-[#C9CFDD99] pb-4">
         <h3 className="font-medium pb-2">Already Holding Bitcoin?</h3>
         <div className="flex flex-wrap justify-start gap-4">
-          <CalculateAboutCryptoCard
-            title="Calculate your Profits"
-            image="/CalculateProfits.png"
-            colorTransition={["#79F1A4", "#0E5CAD"]}
-          />
-          <CalculateAboutCryptoCard
-            title="Calculate your tax liability"
-            image="/CalculateTaxLiability.png"
-            colorTransition={["#FF9865", "#EF3031"]}
-          />
+          <Carousel>
+            <CalculateAboutCryptoCard
+              title="Calculate your Profits"
+              image="/CalculateProfits.png"
+              colorTransition={["#79F1A4", "#0E5CAD"]}
+            />
+            <CalculateAboutCryptoCard
+              title="Calculate your tax liability"
+              image="/CalculateTaxLiability.png"
+              colorTransition={["#FF9865", "#EF3031"]}
+            />
+          </Carousel>
         </div>
       </div>
       <p>

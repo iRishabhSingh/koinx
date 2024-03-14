@@ -20,7 +20,7 @@ const CalculateAboutCryptoCard: React.FC<CalculateAboutCryptoCardProps> = ({
 
   return (
     <div
-      className={`bg-[#0050FF] ${gradient} inline-flex gap-3 rounded-lg p-3 max-w-[310px]`}
+      className={`bg-[#0050FF] ${gradient} inline-flex gap-3 rounded-lg p-3 w-full min-w-[260px] sm:min-w-[305px] max-w-[310px]`}
     >
       <Image
         src={image}
