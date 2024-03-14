@@ -11,3 +11,4 @@ export { default as Tabs } from "./Tabs";
 export { default as TeamMemberCard } from "./TeamMemberCard";
 export { default as TrendingCoin } from "./TrendingCoin";
 export { default as TrendingCryptoCard } from "./TrendingCryptoCard";
+export { default as WidgetCoinGraph } from "./WidgetCoinGraph";

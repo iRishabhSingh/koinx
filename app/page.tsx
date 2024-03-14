@@ -3,6 +3,7 @@ import { TeamMemberCardProps } from "./components/TeamMemberCard";
 import { TrendingCryptoCardProps } from "./components/TrendingCryptoCard";
 import {
   AboutCryptoDiv,
+  CoinDetailDiv,
   PerformanceDiv,
   SentimentDiv,
   SideCard,
@@ -10,6 +11,7 @@ import {
   Tokenomics,
   TrendingSectionDiv,
 } from "./containers";
+import { PerformanceProp } from "./containers/PerformanceDiv";
 import team from "./teams";
 
 export interface CryptoPriceProps {
@@ -25,6 +27,19 @@ export default async function Home() {
     trendingCryptoDataFetched.coins;
   const members: TeamMemberCardProps[] = team.members;
 
+  data = await fetch(
+    "https://api.coingecko.com/api/v3/simple/price?ids=bitcoin&vs_currencies=usd%2Cinr&include_24hr_change=true"
+  );
+  const priceDataFetched = await data.json();
+  const priceData: CryptoPriceProps = priceDataFetched.bitcoin;
+
+  data = await fetch(
+    `https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&ids=bitcoin&order=market_cap_desc&per_page=100&page=1&sparkline=false&locale=en`
+  );
+  const coinDataFetched = await data.json();
+  console.log(coinDataFetched[0]);
+  const coinData: PerformanceProp = coinDataFetched[0];
+
   return (
     <main className="bg-[#EDF0F3] min-w-[320px]">
       <Breadcrumb
@@ -35,7 +50,8 @@ export default async function Home() {
       />
       <div className="flex gap-4 flex-wrap justify-between xl:m-auto max-w-[1440px]">
         <div className="order-1 mx-4 sm:ml-[24px] sm:mr-0 md:ml-[56px] md:mr-0 rounded-md max-w-[calc(100%-2rem)] sm:max-w-[calc(60%-32px)] md:max-w-[calc(60%-60px)] lg:max-w-[calc(60%-68px)] xl:max-w-[60%] flex flex-col gap-4">
-          <PerformanceDiv id={"bitcoin"} />
+          <CoinDetailDiv coinData={coinData} priceData={priceData} />
+          <PerformanceDiv coinData={coinData} />
           <SentimentDiv />
           <AboutCryptoDiv />
           <Tokenomics />

@@ -1,8 +1,9 @@
 import { HoverForInfo, Tabs } from "../components";
-import { TrendingCryptoCardProps } from "../components/TrendingCryptoCard";
 
-interface PerformanceProp {
+export interface PerformanceProp {
   name: string;
+  symbol: string;
+  image: string;
   current_price: number;
   market_cap: number;
   market_cap_rank: number;
@@ -12,49 +13,28 @@ interface PerformanceProp {
   low_24h: number;
 }
 
-interface CoinDetailProps {
-  id: number;
-  name: string;
-  symbol: string;
-  image: string;
-  price: number;
-  price_change_percentage_24h: number;
-  price_change_percentage_7d: number;
-  price_change_percentage_30d: number;
-  price_change_percentage_1y: number;
-  market_cap: number;
-  market_cap_change_percentage_24h: number;
-  market_cap_change_percentage_7d: number;
-  market_cap_change_percentage_30d: number;
-  market_cap_change_percentage_1y: number;
-  circulating_supply: number;
-  total_supply: number;
-  max_supply: number;
-  percent_change_1h: number;
-  percent_change_24h: number;
-  percent_change_7d: number;
-}
-// const Fundamentals = () => {
-//   return (
-
-//   );
-// };
-
 const numberWithCommas = (number: number) => {
   if (isNaN(number)) return number + "";
   return number.toLocaleString();
 };
 
-const PerformanceDiv: React.FC<{ id: string }> = async ({ id }) => {
-  const data = await fetch(
-    `https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&ids=${id}&order=market_cap_desc&per_page=100&page=1&sparkline=false&locale=en`
-  );
-  const coinDataFetched = await data.json();
-  console.log(coinDataFetched[0]);
-  const coinData: PerformanceProp = coinDataFetched[0];
-
-  const formatted_low_24h = numberWithCommas(coinData.low_24h);
-  const formatted_high_24h = numberWithCommas(coinData.high_24h);
+const PerformanceDiv: React.FC<{ coinData: PerformanceProp }> = async ({
+  coinData,
+}) => {
+  const {
+    name,
+    symbol,
+    image,
+    current_price,
+    market_cap,
+    market_cap_rank,
+    market_cap_change_percentage_24h,
+    total_volume,
+    high_24h,
+    low_24h,
+  } = coinData;
+  // const formatted_low_24h = numberWithCommas(coinData.low_24h);
+  // const formatted_high_24h = numberWithCommas(coinData.high_24h);
 
   return (
     <div className="flex flex-col gap-4">
@@ -70,7 +50,7 @@ const PerformanceDiv: React.FC<{ id: string }> = async ({ id }) => {
                 Today&apos;s Low
               </h3>
               <span className="text-[#44475B] text-sm sm:text-base">
-                {formatted_low_24h}
+                {numberWithCommas(low_24h)}
               </span>
             </div>
             <div className="">Scale to be shown</div>
@@ -79,7 +59,7 @@ const PerformanceDiv: React.FC<{ id: string }> = async ({ id }) => {
                 Today&apos;s High
               </h3>
               <span className="text-[#44475B] text-sm sm:text-base">
-                {formatted_high_24h}
+                {numberWithCommas(high_24h)}
               </span>
             </div>
           </div>
@@ -110,10 +90,10 @@ const PerformanceDiv: React.FC<{ id: string }> = async ({ id }) => {
               <Fundamentals /> */}
               <div className="flex justify-between py-4 border-b border-[#D3E0E6]">
                 <span className="text-xs lg:text-sm text-[#768396]">
-                  {coinData.name} Price
+                  {name} Price
                 </span>
                 <span className="text-xs lg:text-sm text-right font-medium px-2">
-                  ${numberWithCommas(coinData.current_price)}
+                  ${numberWithCommas(current_price)}
                 </span>
               </div>
               <div className="flex justify-between py-4 border-b border-[#D3E0E6]">
@@ -121,7 +101,7 @@ const PerformanceDiv: React.FC<{ id: string }> = async ({ id }) => {
                   24h Low / 24h High
                 </span>
                 <span className="text-xs lg:text-sm text-right font-medium px-2">
-                  ${formatted_low_24h} / ${formatted_high_24h}
+                  ${numberWithCommas(low_24h)} / ${numberWithCommas(high_24h)}
                 </span>
               </div>
               <div className="flex justify-between py-4 border-b border-[#D3E0E6]">
@@ -137,7 +117,7 @@ const PerformanceDiv: React.FC<{ id: string }> = async ({ id }) => {
                   Trading Volume
                 </span>
                 <span className="text-xs lg:text-sm text-right font-medium px-2">
-                  ${numberWithCommas(coinData.total_volume)}
+                  ${numberWithCommas(total_volume)}
                 </span>
               </div>
               <div className="flex justify-between py-4 border-b border-[#D3E0E6]">
@@ -145,7 +125,7 @@ const PerformanceDiv: React.FC<{ id: string }> = async ({ id }) => {
                   Market Cap Rank
                 </span>
                 <span className="text-xs lg:text-sm text-right font-medium px-2">
-                  #{coinData.market_cap_rank}
+                  #{market_cap_rank}
                 </span>
               </div>
             </div>
@@ -155,7 +135,7 @@ const PerformanceDiv: React.FC<{ id: string }> = async ({ id }) => {
                   Market Cap
                 </span>
                 <span className="text-xs lg:text-sm text-right font-medium px-2">
-                  ${numberWithCommas(coinData.market_cap)}
+                  ${numberWithCommas(market_cap)}
                 </span>
               </div>
               <div className="flex justify-between py-4 border-b border-[#D3E0E6]">
@@ -163,7 +143,7 @@ const PerformanceDiv: React.FC<{ id: string }> = async ({ id }) => {
                   Market Cap Dominance
                 </span>
                 <span className="text-xs lg:text-sm text-right font-medium px-2">
-                  {coinData.market_cap_change_percentage_24h.toPrecision(2)}%
+                  {market_cap_change_percentage_24h.toPrecision(2)}%
                 </span>
               </div>
               <div className="flex justify-between py-4 border-b border-[#D3E0E6]">

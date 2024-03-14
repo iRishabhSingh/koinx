@@ -1,4 +1,5 @@
 export { default as AboutCryptoDiv } from "./AboutCryptoDiv";
+export { default as CoinDetailDiv } from "./CoinDetailDiv";
 export { default as PerformanceDiv } from "./PerformanceDiv";
 export { default as SentimentDiv } from "./SentimentDiv";
 export { default as SideCard } from "./SideCard";
