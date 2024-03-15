@@ -24,7 +24,7 @@ const TrendingCryptoCard: React.FC<TrendingCryptoCardProps> = ({
   },
 }) => {
   return (
-    <div className="inline-flex flex-col p-2 sm:p-4 border border-gray-300 bg-white rounded-lg my-1 min-w-[200px] sm:min-w-[250px] h-fit">
+    <div className="inline-flex flex-col p-2 sm:p-4 border border-gray-300 bg-white rounded-lg my-1 min-w-[200px] sm:min-w-[250px] max-w-[250px] h-fit">
       {/* Logo and Name */}
       <div className="flex items-center mb-2 gap-2">
         <Image

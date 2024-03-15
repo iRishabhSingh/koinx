@@ -13,7 +13,7 @@ const CoinDetailDiv: React.FC<{
   const { usd, inr } = priceData;
 
   return (
-    <div className="mt-2 sm:bg-white sm:p-3 md:p-6 rounded-lg">
+    <div className="sm:bg-white sm:p-3 md:p-6 rounded-lg">
       <div className="flex gap-6 mb-6">
         <div className="flex items-center gap-2">
           <Image
