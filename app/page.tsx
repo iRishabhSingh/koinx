@@ -37,7 +37,6 @@ export default async function Home() {
     `https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&ids=bitcoin&order=market_cap_desc&per_page=100&page=1&sparkline=false&locale=en`
   );
   const coinDataFetched = await data.json();
-  console.log(coinDataFetched[0]);
   const coinData: PerformanceProp = coinDataFetched[0];
 
   return (

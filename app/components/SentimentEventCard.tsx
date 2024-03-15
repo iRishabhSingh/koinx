@@ -11,7 +11,6 @@ const SentimentEventCard: React.FC<{ image: string }> = ({ image }) => {
           width={100}
           height={100}
           style={{ width: "auto", height: "auto" }}
-          objectFit="cover"
           className="rounded-lg"
         />
       </div>

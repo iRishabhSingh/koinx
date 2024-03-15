@@ -33,8 +33,6 @@ const PerformanceDiv: React.FC<{ coinData: PerformanceProp }> = async ({
     high_24h,
     low_24h,
   } = coinData;
-  // const formatted_low_24h = numberWithCommas(coinData.low_24h);
-  // const formatted_high_24h = numberWithCommas(coinData.high_24h);
 
   return (
     <div className="flex flex-col gap-4">
@@ -85,9 +83,6 @@ const PerformanceDiv: React.FC<{ coinData: PerformanceProp }> = async ({
           </div>
           <div className="flex flex-wrap md:flex-col lg:flex-row justify-between pb-6">
             <div className="w-full md:w-full lg:w-[45%]">
-              {/* <Fundamentals />
-              <Fundamentals />
-              <Fundamentals /> */}
               <div className="flex justify-between py-4 border-b border-[#D3E0E6]">
                 <span className="text-xs lg:text-sm text-[#768396]">
                   {name} Price

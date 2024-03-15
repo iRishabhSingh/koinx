@@ -13,7 +13,7 @@ const WidgetCoinGraph: React.FC<{ symbol: string }> = ({ symbol }) => {
     script.innerHTML = `
         {
           "autosize": true,
-          "symbol": "CRYPTO:${(symbol + "").toUpperCase()}USD",
+          "symbol": "CRYPTO:${symbol.toUpperCase()}USD",
           "interval": "1",
           "timezone": "Etc/UTC",
           "theme": "light",

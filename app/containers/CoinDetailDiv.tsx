@@ -24,7 +24,9 @@ const CoinDetailDiv: React.FC<{
             className="rounded-full"
           />
           <span className="text-lg md:text-2xl font-medium">{name}</span>
-          <span className="text-[#768396] text-sm font-medium">{symbol}</span>
+          <span className="text-[#768396] text-sm font-medium">
+            {symbol.toUpperCase()}
+          </span>
         </div>
         <div className="bg-[#768396] rounded-md px-4 py-2 flex justify-center items-center">
           <span className="text-white text-[12px] font-medium">
