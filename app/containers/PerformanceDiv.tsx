@@ -23,8 +23,6 @@ const PerformanceDiv: React.FC<{ coinData: PerformanceProp }> = async ({
 }) => {
   const {
     name,
-    symbol,
-    image,
     current_price,
     market_cap,
     market_cap_rank,

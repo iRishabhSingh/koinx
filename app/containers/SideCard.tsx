@@ -1,6 +1,7 @@
 import React from "react";
 import { GetStartedCard, TrendingCoin } from "@/app/components";
 import { TrendingCryptoCardProps } from "@/app/components/TrendingCryptoCard";
+import Link from "next/link";
 
 interface SideCardProps {
   sideCardData: TrendingCryptoCardProps[];
@@ -15,7 +16,9 @@ const SideCard: React.FC<SideCardProps> = ({ sideCardData }) => {
         </h2>
         <div>
           {sideCardData.map((data: TrendingCryptoCardProps) => (
-            <TrendingCoin key={data.item.coin_id} item={data.item} />
+            <Link href={data.item.id} key={data.item.coin_id}>
+              <TrendingCoin item={data.item} />
+            </Link>
           ))}
         </div>
       </div>

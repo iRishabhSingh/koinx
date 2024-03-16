@@ -9,15 +9,15 @@ import {
   Tokenomics,
   TrendingSectionDiv,
 } from "../containers";
-import { Breadcrumb } from "../components";
+import { Breadcrumb, SearchBar } from "../components";
 import team from "../teams";
 import { CryptoPriceProps } from "../page";
 import { PerformanceProp } from "../containers/PerformanceDiv";
 import { TeamMemberCardProps } from "../components/TeamMemberCard";
 import { TrendingCryptoCardProps } from "../components/TrendingCryptoCard";
 
-const Home: React.FC<{ params: { slug: string } }> = async ({
-  params: { slug },
+const Home: React.FC<{ params: { id: string } }> = async ({
+  params: { id },
 }) => {
   try {
     const dataOne = await fetch(
@@ -33,13 +33,13 @@ const Home: React.FC<{ params: { slug: string } }> = async ({
       trendingCryptoDataFetched.coins;
 
     const dataTwo = await fetch(
-      `https://api.coingecko.com/api/v3/simple/price?ids=${slug}&vs_currencies=usd%2Cinr&include_24hr_change=true`
+      `https://api.coingecko.com/api/v3/simple/price?ids=${id}&vs_currencies=usd%2Cinr&include_24hr_change=true`
     );
     const priceDataFetched = await dataTwo.json();
-    const priceData: CryptoPriceProps = priceDataFetched[slug];
+    const priceData: CryptoPriceProps = priceDataFetched[id];
 
     const dataThree = await fetch(
-      `https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&ids=${slug}&order=market_cap_desc&per_page=100&page=1&sparkline=false&locale=en`
+      `https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&ids=${id}&order=market_cap_desc&per_page=100&page=1&sparkline=false&locale=en`
     );
     const coinDataFetched = await dataThree.json();
     const coinData: PerformanceProp = coinDataFetched[0];
@@ -51,7 +51,7 @@ const Home: React.FC<{ params: { slug: string } }> = async ({
         <Breadcrumb
           items={[
             { label: "Cryptocurrencies", href: "/" },
-            { label: `${coinData.name}`, href: `/${slug}` },
+            { label: `${coinData.name}`, href: `/${id}` },
           ]}
         />
         <div className="flex gap-4 flex-wrap justify-between xl:m-auto max-w-[1440px]">
@@ -73,7 +73,14 @@ const Home: React.FC<{ params: { slug: string } }> = async ({
       </main>
     );
   } catch (error) {
-    return <h1 className="text-center">No such coin exists.</h1>;
+    return (
+      <div className="py-6 flex flex-col gap-6 items-center min-w-[320px]">
+        <h1 className="text-center font-medium px-4">
+          No such coin exists. But you can search...
+        </h1>
+        <SearchBar />
+      </div>
+    );
   }
 };
 

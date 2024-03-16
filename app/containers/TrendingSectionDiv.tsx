@@ -1,6 +1,7 @@
 import React from "react";
 import { Carousel, TrendingCryptoCard } from "../components";
 import { TrendingCryptoCardProps } from "../components/TrendingCryptoCard";
+import Link from "next/link";
 
 interface TrendingSectionDivProps {
   trendingCryptoData: TrendingCryptoCardProps[];
@@ -17,9 +18,9 @@ const TrendingSectionDiv: React.FC<TrendingSectionDivProps> = ({
         </h2>
         <Carousel>
           {trendingCryptoData.map((data: TrendingCryptoCardProps) => (
-            <div key={data.item.coin_id}>
+            <Link href={data.item.id} key={data.item.coin_id}>
               <TrendingCryptoCard item={data.item} />
-            </div>
+            </Link>
           ))}
         </Carousel>
       </div>
@@ -29,9 +30,9 @@ const TrendingSectionDiv: React.FC<TrendingSectionDivProps> = ({
         </h2>
         <Carousel>
           {trendingCryptoData.map((data: TrendingCryptoCardProps) => (
-            <div key={data.item.coin_id}>
+            <Link href={data.item.id} key={data.item.coin_id}>
               <TrendingCryptoCard item={data.item} />
-            </div>
+            </Link>
           ))}
         </Carousel>
       </div>

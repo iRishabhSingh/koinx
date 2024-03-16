@@ -6,6 +6,7 @@ export { default as Chip } from "./Chip";
 export { default as GetStartedCard } from "./GetStartedCard";
 export { default as HoverForInfo } from "./HoverForInfo";
 export { default as MobileMenu } from "./MobileMenu";
+export { default as SearchBar } from "./SearchBar";
 export { default as SentimentEventCard } from "./SentimentEventCard";
 export { default as Tabs } from "./Tabs";
 export { default as TeamMemberCard } from "./TeamMemberCard";
