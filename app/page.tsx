@@ -11,6 +11,7 @@ import {
   Tokenomics,
   TrendingSectionDiv,
 } from "./containers";
+import { CoinProps } from "./containers/AboutCryptoDiv";
 import { PerformanceProp } from "./containers/PerformanceDiv";
 import team from "./teams";
 
@@ -39,6 +40,12 @@ export default async function Home() {
   const coinDataFetched = await data.json();
   const coinData: PerformanceProp = coinDataFetched[0];
 
+  data = await fetch(
+    `https://api.coingecko.com/api/v3/coins/bitcoin?sparkline=true`
+  );
+  const coinDetailsFetched = await data.json();
+  const coinDetails: CoinProps = coinDetailsFetched;
+
   return (
     <main className="bg-[#EDF0F3] min-w-[320px]">
       <Breadcrumb
@@ -50,9 +57,9 @@ export default async function Home() {
       <div className="flex gap-4 flex-wrap justify-between xl:m-auto max-w-[1440px]">
         <div className="order-1 mx-4 sm:ml-[24px] sm:mr-0 md:ml-[56px] md:mr-0 rounded-md max-w-[calc(100%-2rem)] sm:max-w-[calc(60%-32px)] md:max-w-[calc(60%-60px)] lg:max-w-[calc(60%-68px)] xl:max-w-[60%] flex flex-col gap-4">
           <CoinDetailDiv coinData={coinData} priceData={priceData} />
-          <PerformanceDiv coinData={coinData} />
+          <PerformanceDiv coinData={coinData} coinDetails={coinDetails} />
           <SentimentDiv />
-          <AboutCryptoDiv />
+          <AboutCryptoDiv coinDetails={coinDetails} />
           <Tokenomics />
           <Team members={members} />
         </div>

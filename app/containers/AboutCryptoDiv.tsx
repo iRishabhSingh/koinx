@@ -1,41 +1,105 @@
+import React from "react";
 import { CalculateAboutCryptoCard, Carousel } from "../components";
 
-const AboutCryptoDiv = () => {
+export interface CoinProps {
+  id: string;
+  name: string;
+  symbol: string;
+  description: {
+    en: string;
+  };
+  market_data: {
+    current_price: {
+      usd: number;
+    };
+    low_24h: {
+      usd: number;
+    };
+    high_24h: {
+      usd: number;
+    };
+    price_change_percentage_24h: number;
+    price_change_percentage_7d: number;
+    price_change_percentage_1y: number;
+    sparkline_7d: {
+      price: number[];
+    };
+  };
+}
+
+const AboutCryptoDiv: React.FC<{ coinDetails: CoinProps }> = async ({
+  coinDetails,
+}) => {
+  const {
+    id,
+    name,
+    description: { en },
+  } = coinDetails;
+
+  const linkRegex = /<a href="([^"]+)">([^<]+)<\/a>/g;
+  const formatDescription = (en: string) => {
+    return en.replace(
+      linkRegex,
+      '<a href="$1" class="text-[#0052fe]" target="_blank" rel="noopener noreferrer">$2</a>'
+    );
+  };
+
   return (
     <div className="flex flex-col gap-4 w-full bg-white rounded-md p-3 md:p-6 border border-[#D3E0E6] sm:border-none">
       <h2 className="text-lg md:text-2xl font-medium md:font-medium">
-        About Bitcoin
+        About {name}
       </h2>
       <div className="border-b-[1px] border-[#C9CFDD99] pb-4">
-        <h3 className="font-medium pb-2">What is Bitcoin?</h3>
-        <p className="text-base w-auto">
-          Bitcoin is a decentralized digital currency, created by an unknown
-          person or group of people using the pseudonym Satoshi Nakamoto in
-          2009. It operates on a peer-to-peer network, allowing users to send
-          and receive payments without the need for intermediaries like banks or
-          governments. Bitcoin transactions are recorded on a public ledger
-          called the blockchain, which ensures transparency and security. With
-          its limited supply and decentralized nature, Bitcoin has emerged as a
-          popular store of value and hedge against inflation in the digital age.
-        </p>
+        <h3 className="font-medium pb-2">
+          What is {en === "" ? "Crypto" : name}?
+        </h3>
+        {en && (
+          <p
+            className="text-base w-auto"
+            dangerouslySetInnerHTML={{ __html: formatDescription(en) }}
+          />
+        )}
+        {!en && (
+          <p className="text-base w-auto">
+            Cryptocurrency is a revolutionary concept in the realm of finance,
+            marked by its decentralized nature and cryptographic security
+            protocols. Introduced with the advent of Bitcoin in 2009 by an
+            enigmatic figure or group known as Satoshi Nakamoto, cryptocurrency
+            operates independently of traditional financial institutions like
+            banks or governments. Utilizing blockchain technology, a
+            decentralized ledger system, cryptocurrencies enable peer-to-peer
+            transactions, fostering transparency and security across the
+            network. Bitcoin, the pioneering cryptocurrency, has gained
+            widespread recognition as a store of value and a hedge against
+            inflation, owing to its finite supply and decentralized framework.
+            This digital currency phenomenon continues to reshape the financial
+            landscape, inspiring the creation of numerous alternative
+            cryptocurrencies and innovative blockchain projects across various
+            industries.
+          </p>
+        )}
       </div>
       <div className="border-b-[1px] border-[#C9CFDD99] pb-4">
-        <h3 className="font-medium pb-2">How Does Bitcoin Work?</h3>
+        <h3 className="font-medium pb-2">How Does Crypto Work?</h3>
         <p>
-          Bitcoin transactions are verified by network nodes through
-          cryptography and recorded on the blockchain. Users store their Bitcoin
-          in digital wallets, which are secured by private keys. Transactions
-          are broadcasted to the network and confirmed by miners, who solve
-          complex mathematical puzzles to add new blocks to the blockchain. This
-          process, known as mining, ensures the security and integrity of the
-          network. Bitcoin&apos;s supply is capped at 21 million coins, making
-          it a deflationary asset. Its value is determined by supply and demand
-          dynamics in the market, with factors such as adoption, regulation, and
-          macroeconomic trends influencing its price.
+          Cryptocurrency operates on decentralized networks, leveraging
+          blockchain technology to record transactions securely without the need
+          for a central authority. Users initiate transactions by sending
+          cryptocurrency to others, which are then verified and added to the
+          blockchain by a network of computers using cryptographic techniques.
+          Transactions rely on public and private keys for security, with miners
+          validating transactions through complex puzzles in a process called
+          mining. Consensus mechanisms like Proof of Work (PoW) ensure agreement
+          among network nodes on transaction validity. Wallets enable users to
+          store, send, and receive cryptocurrency securely, while decentralized
+          applications (DApps) utilize cryptocurrencies for various functions
+          across industries. In summary, cryptocurrencies facilitate
+          decentralized, peer-to-peer transactions, supported by blockchain
+          technology and cryptographic principles.
         </p>
       </div>
       <div className="border-b-[1px] border-[#C9CFDD99] pb-4">
-        <h3 className="font-medium pb-2">Already Holding Bitcoin?</h3>
+        <h3 className="font-medium pb-2">Already Holding {name}?</h3>
         <div className="flex flex-wrap justify-start gap-4">
           <Carousel>
             <CalculateAboutCryptoCard
@@ -52,11 +116,14 @@ const AboutCryptoDiv = () => {
         </div>
       </div>
       <p>
-        Whether you&apos;re new to Bitcoin or already holding, it&apos;s
-        important to stay informed about the latest developments and trends in
-        the cryptocurrency space. With its disruptive potential and growing
-        adoption, Bitcoin continues to shape the future of finance and
-        technology.
+        Whether you&apos;re just diving into the world of cryptocurrencies or
+        already have a stake, keeping abreast of the latest advancements and
+        trends is crucial. Cryptocurrency, with its disruptive capabilities and
+        expanding acceptance, remains at the forefront of reshaping both
+        financial and technological landscapes. From Bitcoin&apos;s pioneering
+        role to the ever-evolving ecosystem of alternative coins and blockchain
+        projects, staying informed allows individuals to navigate this dynamic
+        space and harness its potential for innovation and investment.
       </p>
     </div>
   );

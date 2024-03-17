@@ -98,7 +98,7 @@ const SearchBar: React.FC = () => {
                       className="rounded-full"
                     />
                   </div>
-                  <span className="whitespace-nowrap">{coin.name}</span>
+                  <span>{coin.name}</span>
                 </div>
                 <div className="text-end h-fit">
                   <span className="text-xs text-end text-gray-400">
